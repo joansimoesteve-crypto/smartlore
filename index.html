@@ -1,0 +1,363 @@
+
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SMART LORE - Conocimiento Smart City</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        beige: {
+                            50: '#fcfcf9',
+                            100: '#f7f5ed',
+                            200: '#efeada',
+                            300: '#e3d7bf',
+                            400: '#d3c09e',
+                            500: '#be9e71',
+                        },
+                        espresso: {
+                            800: '#382519',
+                            900: '#23150d',
+                        },
+                        citygreen: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b'
+                        },
+                        amberlight: {
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        }
+                    },
+                    animation: {
+                        'light-sweep': 'lightSweep 4s ease infinite',
+                        'float-soft': 'floatSoft 4s ease-in-out infinite',
+                        'pulse-green': 'pulseGreen 2s ease-in-out infinite alternate',
+                        'shimmer-card': 'shimmerCard 3.5s infinite',
+                    },
+                    keyframes: {
+                        lightSweep: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        floatSoft: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        },
+                        pulseGreen: {
+                            '0%': { boxShadow: '0 0 12px rgba(16, 185, 129, 0.25), 0 0 25px rgba(245, 158, 11, 0.15)' },
+                            '100%': { boxShadow: '0 0 25px rgba(16, 185, 129, 0.55), 0 0 45px rgba(245, 158, 11, 0.35)' },
+                        },
+                        shimmerCard: {
+                            '100%': { transform: 'translateX(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #f7f5ed;
+            color: #23150d;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Luminous Glassmorphism light theme */
+        .glass-panel-light {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(227, 215, 191, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(56, 37, 25, 0.05);
+        }
+
+        .glass-card-interactive {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card-interactive:active, .glass-card-interactive:hover {
+            transform: translateY(-2px) scale(1.01);
+            border-color: rgba(16, 185, 129, 0.6);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 12px 25px -5px rgba(16, 185, 129, 0.15);
+        }
+
+        /* Luminous Header Gradient */
+        .luminous-text-gradient {
+            background: linear-gradient(90deg, #23150d, #059669, #d97706, #23150d);
+            background-size: 250% 250%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: lightSweep 5s ease infinite;
+        }
+
+        .shimmer-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-container::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.4) 20%,
+                rgba(255, 255, 255, 0.7) 60%,
+                rgba(255, 255, 255, 0)
+            );
+            animation: shimmerCard 4s infinite;
+        }
+
+        /* Joyful Green Smart City Backdrop */
+        .city-green-bg {
+            background-image: 
+                linear-gradient(to bottom, rgba(247, 245, 237, 0.72), rgba(247, 245, 237, 0.88)),
+                url('https://images.unsplash.com/photo-1518005068251-37900150dfca?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center items-start sm:items-center py-0 sm:py-6 px-0 sm:px-4 city-green-bg relative">
+
+    <!-- Ambient glowing light accents -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-citygreen-100/60 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-0 right-0 w-80 h-80 bg-amberlight-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Main Mobile Container -->
+    <main class="w-full max-w-md min-h-screen sm:min-h-0 bg-beige-50/90 sm:rounded-3xl border-0 sm:border border-beige-300 shadow-2xl overflow-hidden relative z-10 flex flex-col justify-between backdrop-blur-md">
+        
+        <!-- HEADER SECTION -->
+        <header class="p-6 pb-3 text-center relative pt-7 shimmer-container">
+            
+            <!-- Top Floating Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-citygreen-50 border border-citygreen-500/30 text-citygreen-700 text-[11px] font-extrabold tracking-widest uppercase mb-3 shadow-sm animate-float-soft">
+                <span class="w-2.5 h-2.5 rounded-full bg-citygreen-500 animate-pulse"></span>
+                <span>Ecosistema Smart City</span>
+            </div>
+
+            <!-- Big Main Title with Dynamic Sweep -->
+            <h1 class="text-4xl sm:text-5xl font-black tracking-tight mb-2 drop-shadow-sm">
+                <span class="luminous-text-gradient">SMART LORE</span>
+            </h1>
+
+            <!-- Main Slogan -->
+            <div class="bg-gradient-to-r from-transparent via-citygreen-500/10 to-transparent p-1.5 my-2 rounded-lg">
+                <p class="text-xs sm:text-sm font-black tracking-wider text-espresso-900 uppercase leading-snug">
+                    EL CONOCIMIENTO SMART CITY, AL ALCANCE DE TODOS
+                </p>
+            </div>
+
+            <!-- Green Smart City Joyful Hero Banner -->
+            <div class="relative w-full h-36 rounded-2xl overflow-hidden my-4 border border-citygreen-500/30 shadow-md group">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop" 
+                     alt="Smart City Verde, gente conectada y naturaleza" 
+                     class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso-900/80 via-espresso-900/20 to-transparent"></div>
+                <div class="absolute bottom-2.5 left-3.5 right-3.5 text-left">
+                    <p class="text-xs font-black text-white drop-shadow">Conocimiento Smart City</p>
+                    <p class="text-[11px] font-medium text-citygreen-100">Para explorar, conectar y crecer.</p>
+                </div>
+            </div>
+
+            <!-- Core Concept Statement -->
+            <p class="text-xs text-espresso-800 leading-relaxed font-semibold bg-white/80 p-3.5 rounded-xl border border-beige-300 shadow-sm">
+                Un universo de conocimiento organizado para aprender, descubrir ideas y conectar personas con nuevas oportunidades en el ecosistema Smart City.
+            </p>
+
+            <!-- Pill Badges -->
+            <div class="flex justify-center gap-2 mt-3.5 text-[11px] font-bold text-espresso-900">
+                <span class="px-3 py-1 rounded-full bg-white border border-citygreen-500/30 shadow-sm flex items-center gap-1.5 text-citygreen-700">
+                    <i class="fa-solid fa-wifi text-[10px]"></i> Conectado
+                </span>
+                <span class="px-3 py-1 rounded-full bg-white border border-amberlight-500/40 shadow-sm flex items-center gap-1.5 text-amberlight-600">
+                    <i class="fa-solid fa-brain text-[10px]"></i> Inteligente
+                </span>
+                <span class="px-3 py-1 rounded-full bg-white border border-citygreen-500/30 shadow-sm flex items-center gap-1.5 text-citygreen-700">
+                    <i class="fa-solid fa-key text-[10px]"></i> Accesible
+                </span>
+            </div>
+        </header>
+
+        <!-- MAIN BODY CONTENT -->
+        <div class="px-5 space-y-5 my-2">
+
+            <!-- TARGET SECTORS -->
+            <section class="space-y-2">
+                <div class="flex items-center gap-2 px-1">
+                    <i class="fa-solid fa-users text-citygreen-600 text-xs"></i>
+                    <p class="text-[11px] font-black text-espresso-800 uppercase tracking-widest">Diseñado para impulsar a</p>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="glass-panel-light p-2.5 rounded-xl text-center border-b-2 border-b-citygreen-500 flex flex-col items-center justify-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-graduation-cap text-citygreen-600 text-sm"></i>
+                        <span class="text-[11px] font-extrabold text-espresso-900">Universidades</span>
+                    </div>
+                    <div class="glass-panel-light p-2.5 rounded-xl text-center border-b-2 border-b-amberlight-500 flex flex-col items-center justify-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-building-columns text-amberlight-600 text-sm"></i>
+                        <span class="text-[11px] font-extrabold text-espresso-900 leading-tight">Admin. Públicas</span>
+                    </div>
+                    <div class="glass-panel-light p-2.5 rounded-xl text-center border-b-2 border-b-citygreen-500 flex flex-col items-center justify-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-briefcase text-citygreen-600 text-sm"></i>
+                        <span class="text-[11px] font-extrabold text-espresso-900">Profesionales</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: LO QUE OFRECE SMART LORE (UPPER MIDDLE) -->
+            <section class="space-y-3 pt-1">
+                <div class="flex items-center gap-2 px-1">
+                    <i class="fa-solid fa-layer-group text-citygreen-600 text-xs"></i>
+                    <h2 class="text-xs font-black tracking-widest text-espresso-900 uppercase">
+                        Lo que ofrece Smart Lore
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-2.5">
+                    
+                    <!-- Feature 1 -->
+                    <div class="glass-card-interactive p-3.5 rounded-2xl flex items-start gap-3.5 shimmer-container shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-citygreen-50 border border-citygreen-500/30 flex items-center justify-center shrink-0 text-citygreen-600 text-base mt-0.5 font-bold shadow-inner">
+                            ⌕
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-black text-espresso-900 mb-0.5">Conocimiento organizado</h3>
+                            <p class="text-[11px] text-espresso-800 font-medium leading-snug">Un espacio estructurado para acceder al conocimiento Smart City.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="glass-card-interactive p-3.5 rounded-2xl flex items-start gap-3.5 shimmer-container shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-amberlight-50 border border-amberlight-500/30 flex items-center justify-center shrink-0 text-amberlight-600 text-base mt-0.5 font-bold shadow-inner">
+                            ⌕
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-black text-espresso-900 mb-0.5">Búsqueda inteligente</h3>
+                            <p class="text-[11px] text-espresso-800 font-medium leading-snug">Encuentra información relevante y explora conexiones con IA.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="glass-card-interactive p-3.5 rounded-2xl flex items-start gap-3.5 shimmer-container shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-citygreen-50 border border-citygreen-500/30 flex items-center justify-center shrink-0 text-citygreen-600 text-base mt-0.5 font-bold shadow-inner">
+                            ✳
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-black text-espresso-900 mb-0.5">Inteligencia artificial</h3>
+                            <p class="text-[11px] text-espresso-800 font-medium leading-snug">Facilita la exploración, síntesis y análisis del conocimiento.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="glass-card-interactive p-3.5 rounded-2xl flex items-start gap-3.5 shimmer-container shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-amberlight-50 border border-amberlight-500/30 flex items-center justify-center shrink-0 text-amberlight-600 text-base mt-0.5 font-bold shadow-inner">
+                            ⌘
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-black text-espresso-900 mb-0.5">Conocimiento colaborativo</h3>
+                            <p class="text-[11px] text-espresso-800 font-medium leading-snug">Conecta profesionales, ideas e iniciativas del ecosistema urbano.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PROMINENT BIG QR CODE SECTION (AT THE BOTTOM) -->
+            <section class="glass-panel-light rounded-3xl p-5 border-2 border-citygreen-500/40 text-center relative bg-gradient-to-b from-white via-beige-100 to-white shadow-xl my-4">
+                
+                <!-- Glowing Banner Callout -->
+                <div class="bg-gradient-to-r from-citygreen-600 via-citygreen-500 to-amberlight-600 p-2.5 rounded-xl mb-4 shadow-md animate-pulse-green">
+                    <p class="text-xs sm:text-sm font-black tracking-widest text-white uppercase flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-qrcode text-xs"></i>
+                        <span>ESCANEA · CONECTA · AVANZA</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </p>
+                </div>
+
+                <!-- Tappable High Quality QR Code Container -->
+                <a href="https://api-arm.magickhub.com/widget/form/TCSgWPWW77rMGSjSPuLT" target="_blank" rel="noopener noreferrer" class="inline-block group relative cursor-pointer my-2">
+                    <div class="p-4 rounded-2xl bg-white shadow-[0_10px_25px_rgba(16,185,129,0.18)] group-hover:scale-105 transition-all duration-300 relative border-2 border-citygreen-500/30">
+                        
+                        <!-- High Quality QR Code -->
+                        <img id="qrCodeImg" 
+                             src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=https%3A%2F%2Fapi-arm.magickhub.com%2Fwidget%2Fform%2FTCSgWPWW77rMGSjSPuLT&color=23150d&bgcolor=ffffff" 
+                             alt="QR Code Smart Lore Formulario" 
+                             class="w-48 h-48 sm:w-56 sm:h-56 object-contain mx-auto rounded-lg">
+                        
+                        <!-- Interactive Hover Tag -->
+                        <div class="absolute inset-0 bg-espresso-900/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
+                            <span class="bg-citygreen-600 text-white font-black text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Formulario
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <p class="text-[11px] font-bold text-espresso-800 mt-3 mb-4">
+                    Escanea con tu teléfono o <span class="text-citygreen-700 underline">toca directamente el QR</span>
+                </p>
+
+                <!-- Primary Action CTA Button -->
+                <a href="https://api-arm.magickhub.com/widget/form/TCSgWPWW77rMGSjSPuLT" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl bg-gradient-to-r from-citygreen-600 via-citygreen-500 to-citygreen-700 text-white font-black text-sm uppercase tracking-wider shadow-[0_8px_20px_rgba(5,150,105,0.35)] hover:shadow-[0_12px_28px_rgba(5,150,105,0.5)] active:scale-95 transition-all border border-citygreen-400">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                    <span>ACCEDER AL FORMULARIO</span>
+                </a>
+            </section>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="p-5 text-center text-[11px] text-espresso-800 border-t border-beige-300 bg-white/80 mt-2">
+            <p class="font-extrabold text-espresso-900">SMART LORE &copy; 2026</p>
+            <p class="text-[10px] text-espresso-800/80 mt-0.5">Plataforma de Conocimiento Smart City</p>
+        </footer>
+
+    </main>
+
+    <!-- Mobile Vibration Logic on tap -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href*="magickhub"]');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navigator.vibrate) {
+                        navigator.vibrate([25, 40, 25]);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
